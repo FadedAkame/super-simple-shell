@@ -39,6 +39,9 @@ int main(void) {
     // Tokenization
     char *args[ARGC_MAX] = {NULL};
     tokenizer(cmd_buff, args);
+    if (args[0] == NULL) {
+      continue;
+    }
 
     // Fork processes
     pid_t process = fork();
@@ -48,7 +51,6 @@ int main(void) {
 
       // if execve fails
       perror(args[0]);
-      _exit(EXIT_FAILURE);
 
       // Preventing the child from becoming a shell
       break;
